@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Configuration
  */
 @EnableAutoConfiguration
 @Configuration
-open internal class Application {
+internal class Application {
     @Bean
-    open fun controller() = FirstController()
+    fun controller() = FirstController()
 }
 
 /**
