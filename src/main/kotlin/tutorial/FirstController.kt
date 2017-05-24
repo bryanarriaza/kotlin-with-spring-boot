@@ -1,5 +1,6 @@
 package tutorial
 
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import java.time.Instant
 
@@ -53,4 +54,15 @@ class FirstController {
                 registered = Instant.now()
         )
     }
+
+    /** Cause an error to occur */
+    @RequestMapping("/raiseError")
+    fun raiseError() {
+        throw IllegalArgumentException("This shouldn't have happened")
+    }
+
+    /** Handle the error */
+    @ExceptionHandler(IllegalArgumentException::class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    fun handleError(e: IllegalArgumentException) = e.message
 }
